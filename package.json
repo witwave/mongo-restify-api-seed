@@ -1,0 +1,24 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "mongo restify api seed",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "bcrypt jwt-simple log4js moment mongoose restify restify-mongoose"
+  },
+  "author": "witwave",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^0.8.1",
+    "jwt-simple": "^0.2.0",
+    "log4js": "^0.6.22",
+    "moment": "^2.9.0",
+    "mongoose": "^3.8.25",
+    "q": "^1.2.0",
+    "restify-mongoose": "^0.2.3"
+  }
+}
