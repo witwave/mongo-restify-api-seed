@@ -1,10 +1,16 @@
 var restify = require("restify");
-var mongoose = require('mongoose');
-var logger = require('log4js').getLogger();
-var env = process.env.ENV || 'dev';
-var config = require('./config')(env);
 restify.CORS.ALLOW_HEADERS.push('authorization');
-logger.setLevel('TRACE');
+var mongoose = require('mongoose');
+var env = process.env.ENV || 'dev';
+var debug = process.env.DEBUG || 'TRACE';
+var config = require('./config')(env);
+var port = process.env.PORT || 8080;
+var log4js = require('log4js');
+log4js.configure(config.loger);
+
+log = log4js.getLogger('file');
+logmailer = log4js.getLogger("mailer");
+log.setLevel(debug);
 
 var server = restify.createServer({
 	name: config.app.name,
@@ -25,7 +31,8 @@ mongoose.connect(config.mongo);
 require("./route/user")(server);
 require("./route/api")(server);
 
-server.listen(8080, function() {
-	console.log('env %s', env);
-	console.log('%s listening at %s', server.name, server.url);
+server.listen(port, function() {
+	log.info('ENV %s', env);
+	log.info('PORT %s', port);
+	log.info('%s listening at %s', server.name, server.url);
 });
